@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  web:
+    container_name: web
+    hostname: web
+    image: nginx:alpine
+    depends_on:
+      - app
+    ports:
+            - "${PORT:-8443}:443"
+    volumes:
+      - ./web/conf.d:/etc/nginx/conf.d
+      - ./web/ssl:/etc/nginx/ssl
+    networks:
+      - nginx_network
+
+  app:
+    container_name: app
+    hostname: app
+    image: test_fastapi_app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    expose:
+      - 8000
+    networks:
+      - nginx_network
+    volumes:
+      - ./app/app:/app/app
+    command: "uvicorn app.main:app --host 0.0.0.0 --proxy-headers --forwarded-allow-ips *"
+
+networks:
+  nginx_network:
+    driver: bridge
