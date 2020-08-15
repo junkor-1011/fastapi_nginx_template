@@ -51,4 +51,4 @@ ENV PATH=/app/.venv/bin:$PATH
 EXPOSE 8000
 
 # Execute
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--proxy-headers", "--forwarded-allow-ips", "*"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0"]
