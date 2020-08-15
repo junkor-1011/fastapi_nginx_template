@@ -27,7 +27,7 @@ services:
       - nginx_network
     # volumes:
     #   - ./app/app:/app/app
-    command: "uvicorn app.main:app --host 0.0.0.0"
+    # command: "uvicorn app.main:app --host 0.0.0.0"
 
 networks:
   nginx_network:
