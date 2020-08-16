@@ -3,20 +3,20 @@ version: '3'
 services:
   web:
     container_name: web
-    # hostname: web
     image: nginx:alpine
     depends_on:
       - app
     ports:
-      - "80:80"
+      # - "80:80"
+      - "${PORT:-8443:443}"
     volumes:
       - ./web/conf.d:/etc/nginx/conf.d
+      - ./web/ssl:/etc/nginx/ssl
     networks:
       - nginx_network
 
   app:
     container_name: app
-    # hostname: app
     image: test_fastapi_app
     build:
       context: ./app
