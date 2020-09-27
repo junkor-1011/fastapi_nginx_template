@@ -11,6 +11,11 @@ fastapi = "*"
 jinja2 = "*"
 aiofiles = "*"
 
+[tool.poetry.dev-dependencies]
+# sphinx
+sphinx = "*"
+sphinx-rtd-theme = "*"
+
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
